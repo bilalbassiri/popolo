@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { Login, Room, Logo, Toggle } from './components/index';
+import React, { useState } from 'react';
+import getRandomColor from './utils/randomColor';
+import themes from './utils/themes';
 
 function App() {
+  const usersOtherViewColor = getRandomColor();
+  const [currentUserMainColor, setCurrentUserMainColor] = useState('rgb(27, 196, 163)')
+  const [_currentUserName, setCurrentUserName] = useState('');
+  const [isDark, setDark] = useState(false)
+  let currentTheme = isDark ? themes.dark : themes.light;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ backgroundColor: currentTheme.bgColor, color: currentTheme.textColor }}>
+      <Toggle isDark={isDark} setDark={setDark} />
+      <Logo currentTheme={currentTheme} currentUserMainColor={currentUserMainColor} />
+      {
+        !_currentUserName ?
+          <Login currentTheme={currentTheme}
+                 setCurrentUserName={setCurrentUserName}
+                 setColor={setCurrentUserMainColor}
+                 currentUserMainColor={currentUserMainColor} />
+          :
+          <Room  currentTheme={currentTheme}
+                 currentUserName={_currentUserName}
+                 usersColor={usersOtherViewColor} 
+                 currentUserMainColor={currentUserMainColor} />
+      }
     </div>
   );
 }

@@ -1,0 +1,42 @@
+.toggle {
+    position: absolute;
+    width: 46px;
+    height: 25px;
+    padding: 2px;
+    right: 20px;
+    top: 20px;
+    border-radius: 18px;
+    background-color: #595959;
+    input, div {
+        position: absolute;
+    }
+    input {
+        z-index: 1;
+        width: 54px;
+        height: 27px;
+        opacity: 0;
+        cursor: pointer;
+        &:checked ~ div {
+            transform: translateX(100%);
+        }
+    }
+    &>div {
+        height: 21px;
+        width: 21px;
+        background-color: white;
+        border-radius: 50%;
+        color: #595959;
+        display: grid;
+        place-content: center;
+        transition: transform 500ms cubic-bezier(.38,.79,.47,1);
+        .mode-icon {
+            font-size: .9rem;
+            animation: rise 200ms ease-in forwards;
+        }
+    }
+}
+@keyframes rise {
+    to {
+        transform: scale(1) rotate(1turn);
+    }
+}

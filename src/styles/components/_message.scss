@@ -1,0 +1,48 @@
+.msg-container {
+    display: flex;
+    clear: both;
+    max-width: 80%;
+    .avatar-container {
+        position: relative;
+        min-width: 35px;
+        .avatar {
+            position: absolute;
+            bottom: 0;
+            height: 25px;
+            width: 25px;
+            font-size: 14px;
+        }
+    }
+    .msg {
+        border-radius: 8px;
+        margin: 2px;
+        padding: 10px;
+        word-wrap: break-word;
+        overflow-x: hidden;
+        opacity: 0;
+        transform: scale(0);
+        animation: f 200ms ease-in-out forwards;
+        .name {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .text {
+            font-size: 13px;
+            font-weight: 400;
+        }
+    }
+    .last-msg-sender {
+        border-bottom-right-radius: 0px;
+    }
+    .last-msg-others {
+        border-bottom-left-radius: 0px;
+    }
+}
+
+@keyframes f {
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
