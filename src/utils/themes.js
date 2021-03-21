@@ -4,9 +4,9 @@ const themes = {
         textColor: 'white',
         titleColor: '#cdcdcd',
         nameInput: {
-            backgroundColor: '#282e33',
+            backgroundColor: '#343d44',
         },
-        doneBtn : {
+        doneBtn: {
             border: '1px solid  #cdcdcd',
             color: ' #cdcdcd'
         },
@@ -21,6 +21,14 @@ const themes = {
         },
         github: {
             color: 'rgb(183 183 183)'
+        },
+        date: {
+            backgroundColor: '#2f343a',
+            color: 'white'
+        },
+        downBtn: {
+            backgroundColor: '#181D15',
+            border: '1px solid white'
         }
     },
     light: {
@@ -28,9 +36,9 @@ const themes = {
         textColor: '#181D15',
         titleColor: '#888888',
         nameInput: {
-            border: '1px solid #181D15'
+            border: '1px solid rgb(144 144 144)'
         },
-        doneBtn : {
+        doneBtn: {
             border: '1px solid #181D15',
             color: '#181D15'
         },
@@ -46,6 +54,14 @@ const themes = {
         },
         github: {
             color: "rgb(179 179 179)"
+        },
+        date: {
+            backgroundColor: 'rgb(184 194 191)',
+            color: 'white'
+        },
+        downBtn: {
+            backgroundColor: 'white',
+            border: '1px solid #181D15'
         }
     }
 }

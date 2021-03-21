@@ -1,7 +1,9 @@
 .login {
     height: 50vh;
-    .info {
+    .info, .github {
         text-align: center;
+    }
+    .info {
         margin-bottom: 50px;
         margin: auto;
         width: 80%;
@@ -11,7 +13,6 @@
         }
     }
     .github {
-        text-align: center;
         margin-top: 60px;
         a {
             font-size: 11px;
@@ -29,7 +30,7 @@
         justify-content: center;
         gap: 5px;
         opacity: .3;
-        animation: converge 500ms ease-in-out forwards;
+        animation: converge 1s ease-in-out forwards;
         div {
             display: grid;
             place-content: center;
@@ -56,18 +57,23 @@
         margin-top: 20px;
         input, button {
           height: 40px;
-          border: none;
-          outline: none;
-          background: none;
-          border-radius: 5px;
           font-family: inherit;
         }
         input {
-            width:  250px;
+            width:  230px;
             padding: 15px;
             margin-bottom: 8px;
             color: inherit;
-
+            border-radius: 5px;
+            border: 1px solid transparent;
+            &::placeholder {
+                font-size: .8rem;
+                color: #8f8f8f;
+            }
+            &:focus {
+                box-shadow: 0px 0px 0px .5px rgba(124, 124, 124, 0.597);
+            }
+            
         }
         button {
             transition: opacity 200ms cubic-bezier(.97,.75,.87,.78);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SendIcon from '@material-ui/icons/Send';
+import KeyboardArrowDownOutlinedIcon from '@material-ui/icons/KeyboardArrowDownOutlined';
 import Message from './Message';
 import Loading from './Loading';
 import db from '../firebase/config';
@@ -7,30 +8,32 @@ import firebase from "firebase";
 
 
 function Room({ currentTheme, currentUserName, usersColor, currentUserMainColor }) {
-
     const [messages, setMessages] = useState([])
     const [input, setInput] = useState('')
     const [start, setStart] = useState(false)
+    const [isScrollDownBtnEnd, setScrollStatus] = useState(false)
 
     let getFirstText = index => {
-        return messages[index]?.name !== messages[index - 1]?.name ? true : false
+        return messages[index]?.name !== messages[index - 1]?.name
     }
     let getLastText = index => {
-        return ((messages[index]?.name === messages[index - 1]?.name || messages[index]?.name !== messages[index - 1]?.name)
-            && messages[index]?.name !== messages[index + 1]?.name) ? true : false
+        return messages[index]?.name !== messages[index + 1]?.name
+    }
+    let scrollDown = () => {
+        document.getElementById('msg-block-id').scrollTop = document.getElementById('msg-block-id').scrollHeight
     }
     let sendMessage = (e) => {
+        e.preventDefault()
         db.collection('messages').add(
             {
                 name: currentUserName,
                 text: input,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                color: usersColor
+                color: usersColor,
+                day: new Date().getDay()
             });
         setInput('')
-        e.preventDefault();
-        document.getElementById('msgsId').scrollTop = document.getElementById('msgsId').scrollHeight;
-
+        scrollDown()
     }
     useEffect(() => {
         setTimeout(() => {
@@ -42,24 +45,34 @@ function Room({ currentTheme, currentUserName, usersColor, currentUserMainColor 
                 setMessages(snp.docs.map(doc => doc.data()))
             })
     }, [])
-    
     return (
         start ?
             <div className='room'>
-                <div className='messages-block' id='msgsId'>
-                    {
-                        messages.map((msg, i) =>
-                            <Message
-                                message={msg}
-                                key={i}
-                                currentUserName={currentUserName}
-                                first={getFirstText(i)}
-                                last={getLastText(i)}
-                                currentUserMainColor={currentUserMainColor}
-                                currentTheme={currentTheme}
-                            />
-                        )
-                    }
+                {
+                    !isScrollDownBtnEnd && messages.length > 10?
+                        <div className='arrow-down'
+                            style={currentTheme.downBtn}
+                            onClick={scrollDown}>
+                            <KeyboardArrowDownOutlinedIcon className='down-icon' />
+                        </div>
+                        : null
+                }
+                <div className='messages-block' id='msg-block-id'
+                    onScroll={e => setScrollStatus(e.target.scrollHeight - Math.abs(e.target.scrollTop) < 2 * e.target.clientHeight)}>
+                        {
+                            messages.map((msg, i) =>
+                                    <Message 
+                                    key={i}
+                                    index={i}
+                                    message={msg}
+                                    messages={messages}
+                                    currentUserName={currentUserName}
+                                    first={getFirstText(i)}
+                                    last={getLastText(i)}
+                                    currentUserMainColor={currentUserMainColor}
+                                    currentTheme={currentTheme} />
+                            )
+                        }
                 </div>
 
                 <form onSubmit={e => {

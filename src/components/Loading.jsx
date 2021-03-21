@@ -12,6 +12,6 @@ function Loading({ currentUserMainColor }) {
             </div>
         </div>
     )
-} 
+}
 
 export default Loading

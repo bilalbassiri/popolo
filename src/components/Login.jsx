@@ -22,7 +22,6 @@ function Login({ currentTheme, setCurrentUserName, setColor, currentUserMainColo
             <form onSubmit={e => {
                 e.preventDefault();
                 setCurrentUserName(input)
-
             }}>
                 <input
                     style={currentTheme.nameInput}
@@ -46,7 +45,7 @@ function Login({ currentTheme, setCurrentUserName, setColor, currentUserMainColo
                 }
             </div>
             <div className='github'>
-                <a rel="noreferrer" target="_blank" href="https://github.com/bilalbassiri" style={currentTheme.github}>
+                <a rel="noreferrer" target="_blank" href="https://github.com/bilalbassiri/popolo" style={currentTheme.github}>
                     On Github
                 </a>
             </div>

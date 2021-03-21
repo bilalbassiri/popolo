@@ -8,12 +8,17 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
+button, input {
+    outline: none;
+    border: none;
+    background: none;
+}
 .App {
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    &, .login .info, .login input, .room form, .logo-container, .msg-container .msg {
-        transition: all 150ms ease;
+    &, .login .info, .login input, .room form, .logo-container, .msg-container .msg, .day-first-ms-date {
+        transition: all 200ms ease-in-out;
     }
 }

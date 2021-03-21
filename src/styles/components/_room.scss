@@ -1,22 +1,40 @@
 .room {
-    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
     padding: 5px;
     padding-top: 0px;
     height: 50vh;
     overflow-y: hidden;
-    animation: room 600ms cubic-bezier(0,.99,.47,1) forwards;
+    animation: room 1s cubic-bezier(0,.99,.47,1) forwards;
+    .arrow-down {
+        position: absolute;
+        bottom: 100px;
+        z-index: 1;
+        left: 50%;
+        transform: translateX(-50%);
+        display: grid;
+        place-content: center;
+        border-radius: 50%;
+        padding: 2px;
+        cursor: pointer;
+        opacity: .8;
+        transition-duration: 100ms;
+        transform: scale(0);
+        animation: s 150ms ease-in-out forwards;
+        &:hover {
+            opacity: 1;
+        }
+        .down-icon {
+            font-size: 1.3rem;
+        }
+    }
     .messages-block {
         overflow-y: scroll;
         overflow-x: hidden;
         scroll-behavior: smooth;
-        width: 100%;
-        margin-bottom: 10px;
-        padding: 0px 15px 50px 15px;
+        padding: 0px 15px 60px 15px;
         &::-webkit-scrollbar {
             width: 6px;
           }
@@ -33,18 +51,14 @@
         scrollbar-width: thin;
     }
     form {
-        width: 100%;
         border-radius: 90px;
         display: flex;
         border: 1px solid transparent;
         margin-bottom: 10px;
     }
     input {
-        background: none;
-        border: none;
-        outline: none;
         padding: 13px;
-        width: 90%;
+        flex: .92;
         font-family: inherit;
         color: inherit;
         &::placeholder {
@@ -53,10 +67,7 @@
        
     }
     button {
-        width: 10%;
-        outline: none;
-        border: none;
-        background: none;
+        flex:.08;
         transition: transform 150ms ease-in-out;
         cursor: pointer;
         display: grid;
@@ -66,12 +77,17 @@
         }
     }
     .fade {
-        transform: scale(0) rotate(45deg);
+        transform: scale(0) rotate(60deg);
     }
 }
 @keyframes room {
     100% {
         height: 80vh;
+    }
+}
+@keyframes s {
+    to {
+        transform: scale(1);
     }
 }
 @media screen and (min-width: 800px) {

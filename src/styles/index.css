@@ -9,6 +9,12 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+button, input {
+  outline: none;
+  border: none;
+  background: none;
+}
+
 .App {
   height: 100vh;
   display: flex;
@@ -16,16 +22,19 @@ body {
   align-items: center;
 }
 
-.App, .App .login .info, .App .login input, .App .room form, .App .logo-container, .App .msg-container .msg {
-  transition: all 150ms ease;
+.App, .App .login .info, .App .login input, .App .room form, .App .logo-container, .App .msg-container .msg, .App .day-first-ms-date {
+  transition: all 200ms ease-in-out;
 }
 
 .login {
   height: 50vh;
 }
 
-.login .info {
+.login .info, .login .github {
   text-align: center;
+}
+
+.login .info {
   margin-bottom: 50px;
   margin: auto;
   width: 80%;
@@ -37,7 +46,6 @@ body {
 }
 
 .login .github {
-  text-align: center;
   margin-top: 60px;
 }
 
@@ -57,7 +65,7 @@ body {
   justify-content: center;
   gap: 5px;
   opacity: .3;
-  animation: converge 500ms ease-in-out forwards;
+  animation: converge 1s ease-in-out forwards;
 }
 
 .login .palette div {
@@ -88,18 +96,25 @@ body {
 
 .login form input, .login form button {
   height: 40px;
-  border: none;
-  outline: none;
-  background: none;
-  border-radius: 5px;
   font-family: inherit;
 }
 
 .login form input {
-  width: 250px;
+  width: 230px;
   padding: 15px;
   margin-bottom: 8px;
   color: inherit;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+
+.login form input::placeholder {
+  font-size: .8rem;
+  color: #8f8f8f;
+}
+
+.login form input:focus {
+  box-shadow: 0px 0px 0px 0.5px rgba(124, 124, 124, 0.597);
 }
 
 .login form button {
@@ -127,22 +142,9 @@ body {
 .header-logo {
   margin: auto;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  place-content: center;
   height: 20vh;
-  background-color: none;
-}
-
-.header-logo .point {
-  margin: auto;
-  height: 5px;
-  width: 5px;
-  border-radius: 50%;
-  margin-top: 10px;
-}
-
-.header-logo .logo-container {
-  padding: 25px;
 }
 
 .header-logo .logo-container .chat-icon {
@@ -160,26 +162,47 @@ body {
 }
 
 .room {
-  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
   padding: 5px;
   padding-top: 0px;
   height: 50vh;
   overflow-y: hidden;
-  animation: room 600ms cubic-bezier(0, 0.99, 0.47, 1) forwards;
+  animation: room 1s cubic-bezier(0, 0.99, 0.47, 1) forwards;
+}
+
+.room .arrow-down {
+  position: absolute;
+  bottom: 100px;
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+  opacity: .8;
+  transition-duration: 100ms;
+  transform: scale(0);
+  animation: s 150ms ease-in-out forwards;
+}
+
+.room .arrow-down:hover {
+  opacity: 1;
+}
+
+.room .arrow-down .down-icon {
+  font-size: 1.3rem;
 }
 
 .room .messages-block {
   overflow-y: scroll;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 0px 15px 50px 15px;
+  padding: 0px 15px 60px 15px;
   scrollbar-width: thin;
 }
 
@@ -201,7 +224,6 @@ body {
 }
 
 .room form {
-  width: 100%;
   border-radius: 90px;
   display: flex;
   border: 1px solid transparent;
@@ -209,11 +231,8 @@ body {
 }
 
 .room input {
-  background: none;
-  border: none;
-  outline: none;
   padding: 13px;
-  width: 90%;
+  flex: .92;
   font-family: inherit;
   color: inherit;
 }
@@ -223,10 +242,7 @@ body {
 }
 
 .room button {
-  width: 10%;
-  outline: none;
-  border: none;
-  background: none;
+  flex: .08;
   transition: transform 150ms ease-in-out;
   cursor: pointer;
   display: grid;
@@ -238,7 +254,7 @@ body {
 }
 
 .room .fade {
-  transform: scale(0) rotate(45deg);
+  transform: scale(0) rotate(60deg);
 }
 
 @keyframes room {
@@ -247,10 +263,25 @@ body {
   }
 }
 
+@keyframes s {
+  to {
+    transform: scale(1);
+  }
+}
+
 @media screen and (min-width: 800px) {
   .room {
     width: 50%;
   }
+}
+
+.day-first-ms-date {
+  margin: 10px auto;
+  font-size: .75rem;
+  width: fit-content;
+  border-radius: 15px;
+  font-weight: 500;
+  padding: 5px 10px;
 }
 
 .msg-container {
@@ -269,13 +300,13 @@ body {
   bottom: 0;
   height: 25px;
   width: 25px;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .msg-container .msg {
   border-radius: 8px;
   margin: 2px;
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
   word-wrap: break-word;
   overflow-x: hidden;
   opacity: 0;
@@ -291,6 +322,13 @@ body {
 .msg-container .msg .text {
   font-size: 13px;
   font-weight: 400;
+}
+
+.msg-container .msg .time {
+  margin-left: 15px;
+  float: right;
+  padding: 5px;
+  font-size: .75rem;
 }
 
 .msg-container .last-msg-sender {
@@ -380,6 +418,7 @@ body {
 
 .toggle > div .mode-icon {
   font-size: .9rem;
+  transform: scale(0);
   animation: rise 200ms ease-in forwards;
 }
 
