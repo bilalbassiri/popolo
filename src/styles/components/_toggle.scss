@@ -30,7 +30,7 @@
         place-content: center;
         transition: transform 500ms cubic-bezier(.38,.79,.47,1);
         .mode-icon {
-            font-size: .9rem;
+            font-size: .7rem;
             transform: scale(0);
             animation: rise 200ms ease-in forwards;
         }

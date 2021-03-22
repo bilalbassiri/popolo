@@ -22,21 +22,20 @@
         }
     }
     .msg {
-        border-radius: 8px;
+        border-radius: 10px;
         margin: 2px;
-        padding: 10px 10px 0px 10px;
+        padding: 12px 12px 0px 12px;
         word-wrap: break-word;
-        overflow-x: hidden;
         opacity: 0;
         transform: scale(0);
         animation: f 200ms ease-in-out forwards;
         .name {
             margin-bottom: 5px;
+            font-size: 14px;
             font-weight: 500;
         }
         .text {
             font-size: 13px;
-            font-weight: 400;
         }
         .time {
             margin-left: 15px;
@@ -47,9 +46,23 @@
     }
     .last-msg-sender {
         border-bottom-right-radius: 0px;
+        .flesh {
+            right: -18px;
+        }
     }
     .last-msg-others {
         border-bottom-left-radius: 0px;
+        .flesh {
+            left: -18px;
+        }
+    }
+    .flesh {
+        width: 0; 
+        height: 0; 
+        border-left: 10px solid transparent;
+        border-top: 10px solid transparent; 
+        position: absolute;
+        bottom: 0;
     }
 }
 

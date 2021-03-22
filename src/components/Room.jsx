@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import SendIcon from '@material-ui/icons/Send';
+import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import KeyboardArrowDownOutlinedIcon from '@material-ui/icons/KeyboardArrowDownOutlined';
 import Message from './Message';
 import Loading from './Loading';
@@ -7,7 +7,7 @@ import db from '../firebase/config';
 import firebase from "firebase";
 
 
-function Room({ currentTheme, currentUserName, usersColor, currentUserMainColor }) {
+function Room({ currentTheme, currentUserName, usersOtherViewColor, currentUserMainColor }) {
     const [messages, setMessages] = useState([])
     const [input, setInput] = useState('')
     const [start, setStart] = useState(false)
@@ -29,8 +29,8 @@ function Room({ currentTheme, currentUserName, usersColor, currentUserMainColor 
                 name: currentUserName,
                 text: input,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                color: usersColor,
-                day: new Date().getDay()
+                color: usersOtherViewColor,
+                date: new Date().getDate()
             });
         setInput('')
         scrollDown()
@@ -79,12 +79,12 @@ function Room({ currentTheme, currentUserName, usersColor, currentUserMainColor 
                     sendMessage(e)
                 }}
                     style={currentTheme.messageArea}>
-                    <input value={input} type='text' placeholder='Write a message...' autoFocus={true} onChange={e =>
+                    <input value={input} type='text' placeholder='Write your message...' autoFocus={true} onChange={e =>
                         setInput(e.target.value)
                     }
                     />
                     <button type='submit' disabled={!input} className={!input ? 'fade' : ''}>
-                        <SendIcon className="send-icon" style={{ color: currentUserMainColor }} />
+                        <SendRoundedIcon className="send-icon" style={{ color: currentUserMainColor }} />
                     </button>
                 </form>
             </div>

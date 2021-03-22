@@ -8,7 +8,6 @@ function Logo({ currentTheme, currentUserMainColor}) {
             <div className='logo-container'>
                 <ChatIcon className='chat-icon' style={{ color: currentUserMainColor }} />
                 <h1>popolo</h1>
-                <p>Texting app..</p>
             </div>
         </div>
     )

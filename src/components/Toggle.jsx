@@ -5,13 +5,13 @@ import WbSunnyIcon from '@material-ui/icons/WbSunny';
 function Toggle({ isDark, setDark }) {
     return (
         <div className="toggle">
-            <input type="checkbox" onChange={ e => setDark(e.target.checked)}/>
+            <input type="checkbox" id='toggle' onChange={e => setDark(e.target.checked)} />
             <div>
                 {
-                    isDark?
-                    <Brightness3Icon className="mode-icon"/>
-                    :
-                    <WbSunnyIcon className="mode-icon"/>
+                    isDark ?
+                        <Brightness3Icon className="mode-icon" />
+                        :
+                        <WbSunnyIcon className="mode-icon" />
                 }
             </div>
         </div>

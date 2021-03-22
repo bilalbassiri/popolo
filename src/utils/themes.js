@@ -7,8 +7,8 @@ const themes = {
             backgroundColor: '#343d44',
         },
         doneBtn: {
-            border: '1px solid  #cdcdcd',
-            color: ' #cdcdcd'
+            border: '1px solid  white',
+            color: ' white'
         },
         messageArea: {
             backgroundColor: '#282e33',
@@ -28,15 +28,18 @@ const themes = {
         },
         downBtn: {
             backgroundColor: '#181D15',
-            border: '1px solid white'
+            boxShadow: '0px 0px 2px 0px #8D8D8D'
+        },
+        flesh: {
+            borderRight: '10px solid #e7e7e7',
         }
     },
     light: {
         bgColor: 'white',
         textColor: '#181D15',
-        titleColor: '#888888',
+        titleColor: '#535353',
         nameInput: {
-            border: '1px solid rgb(144 144 144)'
+            border: '1px solid #D5D5D5'
         },
         doneBtn: {
             border: '1px solid #181D15',
@@ -44,16 +47,16 @@ const themes = {
         },
         messageArea: {
             backgroundColor: 'white',
-            border: '1px solid #181D15'
+            border: '1px solid rgb(156 156 156)'
         },
         textMessage: {
             backgroundColor: '#e7e7e7'
         },
         info: {
-            color: '#8a8a8a'
+            color: '#535353'
         },
         github: {
-            color: "rgb(179 179 179)"
+            color: "rgb(140 140 140)"
         },
         date: {
             backgroundColor: 'rgb(184 194 191)',
@@ -61,7 +64,10 @@ const themes = {
         },
         downBtn: {
             backgroundColor: 'white',
-            border: '1px solid #181D15'
+            boxShadow: '0px 0px 2px 1px #BFBFBF'
+        },
+        flesh: {
+            borderRight: '10px solid #e7e7e7',
         }
     }
 }

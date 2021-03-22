@@ -1,12 +1,12 @@
 import { Login, Room, Logo, Toggle } from './components/index';
 import React, { useState, useEffect } from 'react';
-import getRandomColor from './utils/randomColor';
-import themes from './utils/themes';
+import { mainColor, usersColor } from './utils/randomColor';
 import palette from './utils/palette';
+import themes from './utils/themes';
 
 function App() {
-  const usersOtherViewColor = getRandomColor();
-  const [currentUserMainColor, setCurrentUserMainColor] = useState(palette[0])
+  const usersOtherViewColor = usersColor;
+  const [currentUserMainColor, setCurrentUserMainColor] = useState(mainColor)
   const [_currentUserName, setCurrentUserName] = useState('');
   const [isDark, setDark] = useState(false)
   let currentTheme = isDark ? themes.dark : themes.light;
@@ -21,12 +21,12 @@ function App() {
         !_currentUserName ?
           <Login currentTheme={currentTheme}
                  setCurrentUserName={setCurrentUserName}
-                 setColor={setCurrentUserMainColor}
+                 setCurrentUserMainColor ={setCurrentUserMainColor}
                  currentUserMainColor={currentUserMainColor} />
           :
           <Room  currentTheme={currentTheme}
                  currentUserName={_currentUserName}
-                 usersColor={usersOtherViewColor} 
+                 usersOtherViewColor={usersOtherViewColor} 
                  currentUserMainColor={currentUserMainColor} />
       }
     </div>
