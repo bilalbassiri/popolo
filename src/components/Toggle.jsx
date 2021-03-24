@@ -5,6 +5,7 @@ import { ThemeContext } from '../contexts/Contexts';
 
 function Toggle() {
     const { isDark, setDark } = useContext(ThemeContext)
+
     return (
         <div className="toggle">
             <input type="checkbox" id='toggle' onChange={e => setDark(e.target.checked)} />

@@ -7,9 +7,11 @@ import { ThemeProvider, UserProvider } from './contexts/Contexts';
 
 function App() {
   const [currentUserMainColor, setCurrentUserMainColor] = useState(mainColor)
-  const [currentUserName, setCurrentUserName] = useState('');
+  const [currentUserName, setCurrentUserName] = useState('')
   const [isDark, setDark] = useState(false)
+
   let currentTheme = getTheme(isDark)
+  
   useEffect(() => {
     if (!palette.includes(currentUserMainColor)) setCurrentUserMainColor(palette[0])
   }, [currentUserMainColor])

@@ -15,18 +15,16 @@ function Room() {
     const [input, setInput] = useState('')
     const [start, setStart] = useState(false)
     const [isScrollDownBtnEnd, setScrollStatus] = useState(false)
+
     const { currentUserName, currentUserMainColor } = useContext(UserContext)
     const { currentTheme } = useContext(ThemeContext)
-    let getFirstText = index => {
-        return messages[index]?.name !== messages[index - 1]?.name
-    }
-    let getLastText = index => {
-        return messages[index]?.name !== messages[index + 1]?.name
-    }
-    let scrollDown = () => {
+
+    const getFirstText = index => messages[index]?.name !== messages[index - 1]?.name
+    const getLastText = index => messages[index]?.name !== messages[index + 1]?.name
+    const scrollDown = () => {
         document.getElementById('msg-block-id').scrollTop = document.getElementById('msg-block-id').scrollHeight
     }
-    let sendMessage = (e) => {
+    const sendMessage = e => {
         e.preventDefault()
         db.collection('messages').add(
             {
@@ -77,9 +75,7 @@ function Room() {
                     </MessagesProvider>
                 </div>
 
-                <form onSubmit={e => {
-                    sendMessage(e)
-                }}
+                <form onSubmit={sendMessage}
                     style={currentTheme.messageArea}>
                     <input value={input} type='text' placeholder='Write your message...' autoFocus={true} onChange={e =>
                         setInput(e.target.value)

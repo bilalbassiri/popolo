@@ -6,6 +6,7 @@ function Message({ message, first, last, index }) {
     const { currentUserName, currentUserMainColor } = useContext(UserContext)
     const { currentTheme } = useContext(ThemeContext)
     const { messages } = useContext(MessagesContext)
+
     const { timestamp } = message
     const isCurrentUser = currentUserName === message.name;
     const msgStyle = [
@@ -16,22 +17,22 @@ function Message({ message, first, last, index }) {
         borderRight: `10px solid ${isCurrentUser ? currentUserMainColor : currentTheme.textMessage.backgroundColor}`,
         transform: `rotateY(${isCurrentUser ? .5 : 0}turn)`,
     }
-    let getTime = tms => {
+    
+    const getTime = tms => {
         let t = new Date(tms?.toDate())
 
         return tms ? `${t.getHours() < 10 ? '0' : ''}${t.getHours()}:${t.getMinutes() < 10 ? '0' : ''}${t.getMinutes()}`
             : '00:00'
     }
-    let getReadableDate = d => {
-        return new Date(d).toDateString()
-    }
-    let getLastMessageDate = () => {
-        let today = new Date().getDate();
+    const getReadableDate = d => new Date(d).toDateString()
+    const getLastMessageDate = () => {
+        const today = new Date().getDate();
         if (messages[index]?.date === today) return 'Today'
         if (today - 1 === messages[index]?.date) return 'Yesterday'
         return getReadableDate(timestamp?.toDate())
     }
-    let isFirstDayMessage = messages[index]?.date !== messages[index - 1]?.date
+    const isFirstDayMessage = messages[index]?.date !== messages[index - 1]?.date
+
     return (
         <>
             { isFirstDayMessage ?
