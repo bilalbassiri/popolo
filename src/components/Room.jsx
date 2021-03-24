@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import SendRoundedIcon from '@material-ui/icons/SendRounded';
-import KeyboardArrowDownOutlinedIcon from '@material-ui/icons/KeyboardArrowDownOutlined';
-import Message from './Message';
-import Loading from './Loading';
+import React, { useState, useEffect, useContext } from 'react'
 import db from '../firebase/config';
 import firebase from "firebase";
+import Message from './Message';
+import Loading from './Loading';
+import { ThemeContext, UserContext, MessagesProvider } from '../contexts/Contexts';
+import { usersOtherViewColor } from '../utils/randomColor'
+import SendRoundedIcon from '@material-ui/icons/SendRounded';
+import KeyboardArrowDownOutlinedIcon from '@material-ui/icons/KeyboardArrowDownOutlined';
 
 
-function Room({ currentTheme, currentUserName, usersOtherViewColor, currentUserMainColor }) {
+
+function Room() {
     const [messages, setMessages] = useState([])
     const [input, setInput] = useState('')
     const [start, setStart] = useState(false)
     const [isScrollDownBtnEnd, setScrollStatus] = useState(false)
-
+    const { currentUserName, currentUserMainColor } = useContext(UserContext)
+    const { currentTheme } = useContext(ThemeContext)
     let getFirstText = index => {
         return messages[index]?.name !== messages[index - 1]?.name
     }
@@ -49,7 +53,7 @@ function Room({ currentTheme, currentUserName, usersOtherViewColor, currentUserM
         start ?
             <div className='room'>
                 {
-                    !isScrollDownBtnEnd && messages.length > 10?
+                    !isScrollDownBtnEnd && messages.length > 10 ?
                         <div className='arrow-down'
                             style={currentTheme.downBtn}
                             onClick={scrollDown}>
@@ -59,20 +63,18 @@ function Room({ currentTheme, currentUserName, usersOtherViewColor, currentUserM
                 }
                 <div className='messages-block' id='msg-block-id'
                     onScroll={e => setScrollStatus(e.target.scrollHeight - Math.abs(e.target.scrollTop) < 2 * e.target.clientHeight)}>
+                    <MessagesProvider value={{messages}}>
                         {
                             messages.map((msg, i) =>
-                                    <Message 
+                                <Message
                                     key={i}
                                     index={i}
                                     message={msg}
-                                    messages={messages}
-                                    currentUserName={currentUserName}
                                     first={getFirstText(i)}
-                                    last={getLastText(i)}
-                                    currentUserMainColor={currentUserMainColor}
-                                    currentTheme={currentTheme} />
+                                    last={getLastText(i)} />
                             )
                         }
+                    </MessagesProvider>
                 </div>
 
                 <form onSubmit={e => {

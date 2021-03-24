@@ -1,6 +1,6 @@
 import palette from './palette';
 
-let usersPalette = [
+let usersColor = [
         '#b693da',
         '#70CAD1',
         '#A4B0F5',
@@ -24,4 +24,4 @@ let getRandomColor = (colors)=> {
     return colors[r]
 }
 export let mainColor = getRandomColor(palette)
-export let usersColor = getRandomColor(usersPalette)
+export let usersOtherViewColor = getRandomColor(usersColor)

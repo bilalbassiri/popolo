@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Avatar from '@material-ui/core/Avatar';
+import { ThemeContext, UserContext, MessagesContext } from '../contexts/Contexts'
 
-function Message({ currentTheme, message, messages, currentUserName, first, last, currentUserMainColor, index }) {
+function Message({ message, first, last, index }) {
+    const { currentUserName, currentUserMainColor } = useContext(UserContext)
+    const { currentTheme } = useContext(ThemeContext)
+    const { messages } = useContext(MessagesContext)
     const { timestamp } = message
     const isCurrentUser = currentUserName === message.name;
     const msgStyle = [

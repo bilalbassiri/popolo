@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ChatIcon from '@material-ui/icons/Chat';
+import { UserContext, ThemeContext } from '../contexts/Contexts'
 
 
-function Logo({ currentTheme, currentUserMainColor}) {
+function Logo() {
+    const { currentUserMainColor } = useContext(UserContext)
+    const { currentTheme } = useContext(ThemeContext)
     return (
         <div className='header-logo' style={{ color: currentTheme.titleColor }}>
             <div className='logo-container'>

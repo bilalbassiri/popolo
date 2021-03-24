@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
 import CheckIcon from '@material-ui/icons/Check';
 import palette from '../utils/palette'
+import { UserContext, ThemeContext } from '../contexts/Contexts';
 
-function Login({ currentTheme, setCurrentUserName, setCurrentUserMainColor, currentUserMainColor }) {
-
+function Login({ setCurrentUserName, setCurrentUserMainColor }) {
+    const { currentUserMainColor } = useContext(UserContext)
+    const { currentTheme } = useContext(ThemeContext)
     const [input, setInput] = useState('');
     let handleChangedColor = e => {
         setCurrentUserMainColor(e.target.style.backgroundColor)
@@ -41,11 +43,11 @@ function Login({ currentTheme, setCurrentUserName, setCurrentUserMainColor, curr
                         )
                     }
                 </div>
-                <button type='submit' name='start' 
-                style={{ border: currentTheme.doneBtn.border }} 
-                onClick={e => {
-                document.getElementById('name-field').focus()
-                }}>
+                <button type='submit' name='start'
+                    style={{ border: currentTheme.doneBtn.border }}
+                    onClick={e => {
+                        document.getElementById('name-field').focus()
+                    }}>
                     <ArrowForwardRoundedIcon style={{ fontSize: '1.2rem', color: currentTheme.doneBtn.color }} />
                 </button>
             </form>
